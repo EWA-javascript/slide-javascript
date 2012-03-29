@@ -1,0 +1,17 @@
+{ 
+  "name" : "coffeescript-slides",
+  "description" : "Slides software using HTML5, CoffeeScript and Node.js",
+  "version" : "1.0.0",
+  "author" : "Sven Pfleiderer <sven@roothausen.de>",
+  "directories" : { "lib" : "lib" },
+  "engines" : {
+    "node": ">= 0.1.0",
+    "npm" : ">= 1.0.*"
+  },
+  "dependencies": {
+     "express" : ">= 2.5",
+     "log4js" : ">= 0.4.3",
+     "sanitizer" : ">= 0.0.15",
+     "socket.io" : ">= 0.9.3"
+  }
+}
