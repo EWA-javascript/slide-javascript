@@ -43,14 +43,3 @@ app.configure('production', function () {
 app.listen(PORT, function () {
     logger.info('Server listening on port: http://localhost:' + app.address().port);
   });
-
-/* Process Logging */
-
-process.on('SIGINT', function () {
-    logger.info('Got SIGINT. Exiting ...');
-    process.exit(0);
-  });
-
-process.on('uncaughtException', function (err) {
-    logger.fatal('RUNTIME ERROR! :' + err.stack);
-  });
