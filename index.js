@@ -6,11 +6,13 @@
 
 var Express = require('express');
 var Log4js = require('log4js');
+var WebSocket = require('./lib/websocket.js');
+
 var PORT = 8080;
 var LOGFILE = __dirname + '/log/slideshow.log';
 var logger = Log4js.getLogger('slideshow');
 
-/* 
+/*
  * set up the application
  */
 var app = module.exports = Express.createServer();
@@ -18,12 +20,14 @@ var app = module.exports = Express.createServer();
 app.configure(function () {
     app.use(app.router);
     app.use(Express.static(__dirname + '/public'));
+    app.use(Express.cookieParser());
+    app.use(Express.session({ secret: 'fljkasaskjfhdaskjf', key: 'js.presentation' }));
   });
 
 app.configure('development', function () {
     app.use(Express.errorHandler({
           dumpExceptions: true,
-          showStack: true 
+          showStack: true
         }));
     logger.setLevel('DEBUG');
   });
@@ -41,5 +45,6 @@ app.configure('production', function () {
   });
 
 app.listen(PORT, function () {
-    logger.info('Server listening on port: http://localhost:' + app.address().port);
+    WebSocket.createWebsocketServer(app, logger);
+    logger.info('Server listening on port: http://localhost:' + PORT);
   });
