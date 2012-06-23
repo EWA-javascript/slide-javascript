@@ -451,6 +451,9 @@
 
 <!-- end slides raphael -->
 
+
+<!-- start slides pfleidi -->
+
 <section class="slide deck-current" id="node-title">
   <h1>What is Node.js</h1>
 </section>
@@ -459,17 +462,17 @@
   <h2>Let's talk about events</h2>
   <div class="sample-content">
   <pre class="prettyprint">
-var listeningSocket = http.socket.listen(8080);
+    var listeningSocket = http.socket.listen(8080);
 
-// loop endlessly
-while (true) {
-  var request = listeningSocket.accept();
-  // process is blocked until a client connects
-  var requestedFile = request.getRequestedFileName();
-  var data = io.file.open(requestedFile).read();
-  request.respond(data);
-  request.closeConnection();
-}
+    // loop endlessly
+    while (true) {
+      var request = listeningSocket.accept();
+      // process is blocked until a client connects
+      var requestedFile = request.getRequestedFileName();
+      var data = io.file.open(requestedFile).read();
+      request.respond(data);
+      request.closeConnection();
+    }
   </pre>
 </div>
 </section>
@@ -487,22 +490,21 @@ while (true) {
 <h2>Solution: Use an event loop</h2>
   <div class="sample-content">
   <pre class="prettyprint">
+    var listeningSocket = http.socket.listen(8080);
+    var input = [listeningSocket];
 
-var listeningSocket = http.socket.listen(8080);
-var input = [listeningSocket];
+    function eventLoop() {
+      while (true) {
+        var descriptors = io.select(input, [], []);
+        // get all readable file descriptors
+        var ready = descriptors.inputready;
 
-function eventLoop() {
-  while (true) {
-    var descriptors = io.select(input, [], []);
-    // get all readable file descriptors
-    var ready = descriptors.inputready;
-
-    for (var i; i &lt; ready.length; i++) {
-      // handle events
+        for (var i; i &lt; ready.length; i++) {
+          // handle events
+        }
+      }
     }
-  }
-}
-eventLoop();
+    eventLoop();
 </pre>
 </div>
 </section>
@@ -544,12 +546,12 @@ http.createServer(function (req, res) {
   <h2>Using modules</h2>
   <div class="sample-content">
   <pre class="prettyprint">
-  // requiring module
-  var util = require('util');
+    // requiring module
+    var util = require('util');
 
-  // using the module
-  output = util.format('%s:%s', 'foo', 'bar', 'baz'); // 'foo:bar baz'
-  util.log(output);
+    // using the module
+    output = util.format('%s:%s', 'foo', 'bar', 'baz'); // 'foo:bar baz'
+    util.log(output);
   </pre>
 </div>
 </section>
@@ -559,16 +561,16 @@ http.createServer(function (req, res) {
   <h3>Example: circle.js</h3>
   <div class="sample-content">
   <pre class="prettyprint">
-var PI = Math.PI;
+    var PI = Math.PI;
 
-// export module functions
-exports.area = function (r) {
-  return PI * r * r;
-};
+    // export module functions
+    exports.area = function (r) {
+      return PI * r * r;
+    };
 
-exports.circumference = function (r) {
-  return 2 * PI * r;
-};
+    exports.circumference = function (r) {
+      return 2 * PI * r;
+    };
  </pre>
  </div>
  <h3>Usage of circle.js</h3>
@@ -612,23 +614,23 @@ exports.circumference = function (r) {
  <h2>package.json</h2>
   <div class="sample-content">
   <pre class="prettyprint">
-{
-  "name" : "javascript-slides",
-  "description" : "Slides software using HTML5, CoffeeScript and Node.js",
-  "version" : "1.0.0",
-  "author" : "Realtime Webapps Team",
-  "directories" : { "lib" : "lib" },
-  "engines" : {
-    "node": "&lt;= 0.6.0",
-    "npm" : "&lt;= 1.1.*"
-  },
-  "dependencies": {
-     "express" : "&lt;= 3.0",
-     "log4js" : "&lt;= 0.5.0",
-     "sanitizer" : "&lt;= 0.0.15",
-     "socket.io" : "&lt;= 0.9.6"
-  }
-}
+    {
+      "name" : "javascript-slides",
+      "description" : "Slides software using HTML5, CoffeeScript and Node.js",
+      "version" : "1.0.0",
+      "author" : "Realtime Webapps Team",
+      "directories" : { "lib" : "lib" },
+      "engines" : {
+        "node": "&lt;= 0.6.0",
+        "npm" : "&lt;= 1.1.*"
+      },
+      "dependencies": {
+         "express" : "&lt;= 3.0",
+         "log4js" : "&lt;= 0.5.0",
+         "sanitizer" : "&lt;= 0.0.15",
+         "socket.io" : "&lt;= 0.9.6"
+      }
+    }
  </pre>
  </div>
  </section>
@@ -643,6 +645,7 @@ exports.circumference = function (r) {
  </ul>
  </section>
 
+ <!-- start slides pfleidi -->
 
  <!-- End slides -->
 
