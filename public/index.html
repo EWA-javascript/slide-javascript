@@ -53,7 +53,8 @@
 
 <section class="slide" id="type_coercion">
   <h2>Type Coercion</h2>
-  <pre><code>
+  <div class="sample-content">
+  <pre class="prettyprint">
   1 == "1"
   &gt;&gt; true
 
@@ -69,7 +70,8 @@
 
   ',,,' === new Array(4)
   &gt;&gt; false
-  </pre></code>
+  </pre>
+  </div>
 </section>
 
 <section class="slide" id="objects">
@@ -87,7 +89,8 @@
 
 <section class="slide" id="object_literals">
   <h2>Object Literals</h2>
-  <pre><code>
+  <div class="sample-content">
+  <pre class="prettyprint">
     var bob = {
       name: "bob",
       age: 42,
@@ -100,13 +103,15 @@
         hans: 654321
       }
     };
-  </pre></code>
+  </pre>
+  </div>
 </section>
 
 
 <section class="slide" id="value_manipulation">
   <h2>Retrieval / Update / Delete</h2>
-  <pre><code>
+  <div class="sample-content">
+  <pre class="prettyprint">
     //retrieve a value
     bob.name
     &gt;&gt; "bob"
@@ -125,12 +130,14 @@
 
     //delete a value
     delete bob.age
-  </pre></code>
+  </pre>
+  </div>
 </section>
 
 <section class="slide" id="object_enumeration">
   <h2>Enumeration</h2>
-  <pre><code>
+  <div class="sample-content">
+  <pre class="prettyprint">
     var items = {
       bread: 1.00,
       tea: 2.50,
@@ -144,7 +151,8 @@
     &gt;&gt; "bread costs 1.00 €"
     &gt;&gt; "tea costs 2.50 €"
     &gt;&gt; "butter costs 0.90 €"
-  </pre></code>
+  </pre>
+  </div>
 </section>
 
 <section class="slide" id="arrays_title">
@@ -162,7 +170,8 @@
 
 <section class="slide" id="array_literals">
   <h2>Array Literals</h2>
-  <pre><code>
+  <div class="sample-content">
+  <pre class="prettyprint">
     var numbersArray = ["zero", "one", "two"];
 
     var numbersObject = {
@@ -183,12 +192,14 @@
 
     numbersArray.indexOf("one");
     &gt;&gt; 1
-  </pre></code>
+  </pre>
+  </div>
 </section>
 
 <section class="slide" id="array_enumeration">
   <h2>Enumeration</h2>
-  <pre><code>
+  <div class="sample-content">
+  <pre class="prettyprint">
   var foo = [1,2,3,4,5];
   for (var i = 0; i &lt; foo.length; i++) {
     console.log(foo[i]);
@@ -208,7 +219,8 @@
     console.log(foo[index]);
   }
   &gt;&gt; 1 2 3 4 5 "foobar"
-  </pre></code>
+  </pre>
+  </div>
 </section>
 
 <section class="slide" id="crockford_quote">
@@ -234,7 +246,8 @@
 
 <section class="slide" id="function_syntax">
   <h2>Assign a function to a variable</h2>
-  <pre><code>
+  <div class="sample-content">
+  <pre class="prettyprint">
     var add = function(a, b) {
       return a + b;
     };
@@ -242,12 +255,14 @@
     function add(a, b) {
       return a + b;
     }
-  </pre></code>
+  </pre>
+  </div>
 </section>
 
 <section class="slide" id="closures">
   <h2>Closures</h2>
-  <pre><code>
+  <div class="sample-content">
+  <pre class="prettyprint">
     function makeFilter(regex) {
       return function(string) {
         return string.replace(regex; '');
@@ -257,16 +272,19 @@
     numberFilter("AB12AB12");
 
     &gt;&gt; "ABAB"
-  </code></pre>
+  </pre>
+  </div>
 </section>
 
 <section class="slide" id="anonymous_functions">
   <h2>Anonymous Functions</h2>
-  <pre><code>
+  <div class="sample-content">
+  <pre class="prettyprint">
     button.onclick(function() {
       alert("Click!");
     });
-  </code></pre>
+  </pre>
+  </div>
 </section>
 
 <section class="slide" id"prototyping">
@@ -279,7 +297,8 @@
 
 <section class="slide" id="constructor_functions">
   <h2>Constructor Functions</h2>
-  <pre><code>
+  <div class="sample-content">
+  <pre class="prettyprint">
     var Shape = function(x, y) {
       this.x = x;
       this.y = y;
@@ -293,7 +312,8 @@
 
     var shape1 = new Shape(5,5);
     var shape2 = new Shape(10,10);
-  </pre></code>
+  </pre>
+  </div>
 </section>
 
 <section class="slide" id="prototype_chain_1">
@@ -303,7 +323,8 @@
 
 <section class="slide" id="prototype_property">
   <h2>Prototype Property</h2>
-  <pre><code>
+  <div class="sample-content">
+  <pre class="prettyprint">
     //a better approach
     var Shape = function(x, y) {
       this.x = x;
@@ -318,7 +339,8 @@
 
     var shape1 = new Shape(5,5);
     var shape2 = new Shape(10,10);
-  </pre></code>
+  </pre>
+  </div>
 </section>
 
 <section class="slide" id="prototype_chain_2">
@@ -357,7 +379,8 @@
 
 <section class="slide" id="library_extensions">
   <h2>Extending JavaScript</h2>
-  <pre><code>
+  <div class="sample-content">
+  <pre class="prettyprint">
   var array = [1,2,3,4];
   Array.prototype.contains = function(element) {
       for(var i = 0; i &lt; this.length; i++) {
@@ -370,7 +393,8 @@
 
   array.contains(1);
   &gt;&gt; true
-  </pre></code>
+  </pre>
+  </div>
 </section>
 
 <section class="slide" id="scope">
@@ -379,7 +403,8 @@
 
 <section class="slide" id="function_scope">
   <h2>There is no block scope!</h2>
-  <pre><code>
+  <div class="sample-content">
+  <pre class="prettyprint">
   function aFunction() {
     var foo = 1;
     if(true) {
@@ -387,18 +412,21 @@
     }
     //foo === 2
   }
-  </pre></code>
+  </pre>
+  </div>
 </section>
 
 <section class="slide" id="anonymous_wrapper">
   <h2>Anonymous Wrapper</h2>
-  <pre><code>
+  <div class="sample-content">
+  <pre class="prettyprint">
   (function() {
     //do something, function has own scope
     var foo = 5;
   })();
   //foo === undefined
-  </pre></code>
+  </pre>
+  </div>
 </section>
 
 <section class="slide" id="global_variables">
@@ -408,7 +436,8 @@
     <li>everything uses the global window object</li>
   </ul>
 
-  <pre><code>
+  <div class="sample-content">
+  <pre class="prettyprint">
   var foo = 5;
   window.foo
   &gt;&gt; 5
@@ -417,12 +446,14 @@
   bar = 10;
   window.bar
   &gt;&gt; 10
-  </pre></code>
+  </pre>
+  </div>
 </section>
 
 <section class="slide" id="module_pattern">
   <h2>The module pattern</h2>
-  <pre><code>
+  <div class="sample-content">
+  <pre class="prettyprint">
   var myModule = (function() {
     var privateNumber = 0;
     var privateFunction = function() {
@@ -435,7 +466,8 @@
       }
     };
   })();
-  </pre></code>
+  </pre>
+  </div>
 </section>
 
 <section class="slide" id="future">
