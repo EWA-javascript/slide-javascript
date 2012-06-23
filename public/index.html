@@ -37,6 +37,420 @@
 
 
 <!-- Begin slides -->
+<!-- slides raphael -->
+<section class="slide" id="operators_title">
+  <h1>Operators</h1>
+</section>
+
+<section class="slide" id="operators">
+  <h2>Operators</h2>
+  <ul>
+    <li><h3>arithmetic</h3> +, -, *, /, %, ++, --</li>
+    <li><h3>comparison</h3> ==, ===, !=, !==, &gt;, &lt;,</li>
+    <li><h3>logic</h3> &amp;&amp;, ||, !</li>
+  </ul>
+</section>
+
+<section class="slide" id="type_coercion">
+  <h2>Type Coercion</h2>
+  <pre><code>
+  1 == "1"
+  &gt;&gt; true
+
+  0 == ''
+  &gt;&gt; true
+
+  ',,,' == new Array(4)
+  &gt;&gt; true
+
+  //better use ===
+  0 === ''
+  &gt;&gt; false
+
+  ',,,' === new Array(4)
+  &gt;&gt; false
+  </pre></code>
+</section>
+
+<section class="slide" id="objects">
+  <h1>Objects</h1>
+</section>
+
+<section class="slide" id="objects2">
+  <h2> Objects are mutable keyed collections </h2>
+  <ul>
+    <li>a property name can be any string</li>
+    <li>a property value can be any JavaScript value</li>
+    <li>objects are class-free in JavaScript</li>
+  </ul>
+</section>
+
+<section class="slide" id="object_literals">
+  <h2>Object Literals</h2>
+  <pre><code>
+    var bob = {
+      name: "bob",
+      age: 42,
+      toString: function() {
+        return "My name is " + this.name;
+       },
+      friends: ["peter", "hans"],
+      contacts: {
+        peter: 123456,
+        hans: 654321
+      }
+    };
+  </pre></code>
+</section>
+
+
+<section class="slide" id="value_manipulation">
+  <h2>Retrieval / Update / Delete</h2>
+  <pre><code>
+    //retrieve a value
+    bob.name
+    &gt;&gt; "bob"
+
+    bob["age"]
+    &gt;&gt; 42
+
+    bob.0 //SyntaxError
+    bob["0"]
+
+    bob.parents
+    &gt;&gt; undefined
+
+    //update a value
+    bob.age = 50;
+
+    //delete a value
+    delete bob.age
+  </pre></code>
+</section>
+
+<section class="slide" id="object_enumeration">
+  <h2>Enumeration</h2>
+  <pre><code>
+    var items = {
+      bread: 1.00,
+      tea: 2.50,
+      butter: 0.90
+    };
+
+    for(var item in items) {
+      console.log(item + " costs " + items[item] + " €");
+    }
+
+    &gt;&gt; "bread costs 1.00 €"
+    &gt;&gt; "tea costs 2.50 €"
+    &gt;&gt; "butter costs 0.90 €"
+  </pre></code>
+</section>
+
+<section class="slide" id="arrays_title">
+  <h1>Arrays</h1>
+</section>
+
+<section class="slide" id="array_properties">
+  <h2>Arrays ...</h2>
+  <ul>
+    <li>are really just objects with useful builtin functionalities</li>
+    <li>have no fixed length</li>
+    <li>may contain any mixture of values</li>
+  </ul>
+</section>
+
+<section class="slide" id="array_literals">
+  <h2>Array Literals</h2>
+  <pre><code>
+    var numbersArray = ["zero", "one", "two"];
+
+    var numbersObject = {
+      0: "zero",
+      1: "one",
+      2: "two"
+    };
+
+    numbersArray[0]
+    &gt;&gt; "zero"
+
+    numbersArray[5]
+    &gt;&gt; undefined
+    numbersArray[5] = "five"
+
+    numbersArray.length
+    &gt;&gt; 3
+
+    numbersArray.indexOf("one");
+    &gt;&gt; 1
+  </pre></code>
+</section>
+
+<section class="slide" id="array_enumeration">
+  <h2>Enumeration</h2>
+  <pre><code>
+  var foo = [1,2,3,4,5];
+  for (var i = 0; i &lt; foo.length; i++) {
+    console.log(foo[i]);
+  }
+  &gt;&gt; 1 2 3 4 5
+
+  //since JavaScript 1.6
+  foo.forEach(function(item,index,array) {
+    console.log(item);
+  });
+  &gt;&gt; 1 2 3 4 5
+
+  //don't do this!
+  var foo = [1,2,3,4,5];
+  foo.bar = "foobar";
+  for(var index in foo) {
+    console.log(foo[index]);
+  }
+  &gt;&gt; 1 2 3 4 5 "foobar"
+  </pre></code>
+</section>
+
+<section class="slide" id="crockford_quote">
+  <blockquote >
+    <p>Javascript is the only language where good programmers believe they can use it effectively, without learning it.</p>
+    <p><cite>Douglas Crockford</cite></p>
+  </blockquote>
+</section>
+
+<section class="slide" id="functions">
+  <h1>Javascript functions are first-class functions.</h1>
+</section>
+
+<section class="slide" id="first_class">
+  <h2>Functions can be ...</h2>
+  <ul>
+    <li class="slide"> assigned to variables</li>
+    <li class="slide"> returned from functions</li>
+    <li class="slide"> passed as a function argument</li>
+    <li class="slide"> stored in data structures</li>
+  </ul>
+</section>
+
+<section class="slide" id="function_syntax">
+  <h2>Assign a function to a variable</h2>
+  <pre><code>
+    var add = function(a, b) {
+      return a + b;
+    };
+
+    function add(a, b) {
+      return a + b;
+    }
+  </pre></code>
+</section>
+
+<section class="slide" id="closures">
+  <h2>Closures</h2>
+  <pre><code>
+    function makeFilter(regex) {
+      return function(string) {
+        return string.replace(regex; '');
+      };
+    };
+    var numberFilter = makeFilter(/\d+/g);
+    numberFilter("AB12AB12");
+
+    &gt;&gt; "ABAB"
+  </code></pre>
+</section>
+
+<section class="slide" id="anonymous_functions">
+  <h2>Anonymous Functions</h2>
+  <pre><code>
+    button.onclick(function() {
+      alert("Click!");
+    });
+  </code></pre>
+</section>
+
+<section class="slide" id"prototyping">
+  <h2>Prototyping</h2>
+  <ul>
+    <li>no classes in JavaScript</li>
+    <li>objects inherit directly from other objects</li>
+  </ul>
+</section>
+
+<section class="slide" id="constructor_functions">
+  <h2>Constructor Functions</h2>
+  <pre><code>
+    var Shape = function(x, y) {
+      this.x = x;
+      this.y = y;
+      this.toString = function() {
+        return "Shape at " + this.x + " : " + this.y;
+      };
+      this.draw = function() {
+        return "Shape";
+      };
+    };
+
+    var shape1 = new Shape(5,5);
+    var shape2 = new Shape(10,10);
+  </pre></code>
+</section>
+
+<section class="slide" id="prototype_chain_1">
+  <h2>Prototype Chain</h2>
+  <img src="images/prototype.png">
+</section>
+
+<section class="slide" id="prototype_property">
+  <h2>Prototype Property</h2>
+  <pre><code>
+    //a better approach
+    var Shape = function(x, y) {
+      this.x = x;
+      this.y = y;
+    };
+    Shape.prototype.toString = function() {
+      return "shape at " + this.x + " : " + this.y;
+    };
+    Shape.prototype.draw = function() {
+      return "Shape";
+    };
+
+    var shape1 = new Shape(5,5);
+    var shape2 = new Shape(10,10);
+  </pre></code>
+</section>
+
+<section class="slide" id="prototype_chain_2">
+  <h2>Prototype Chain</h2>
+  <img src="images/prototype2.png">
+</section>
+
+<!--
+<section class="slide" id="alternative_prototyping">
+  <h2>An Alternative</h2>
+  <pre><code>
+  var shape = {
+    toString: function() {
+      return "shape at " + this.x + " : " + this.y;
+    },
+    draw: function() {
+      return "Shape";
+    }
+  };
+
+  var myShape = Object.create(shape, {
+    x: {
+      value: 5,
+      enumerable: true,
+      writable: true
+    },
+    y: {
+      value: 10,
+      enumerable: true,
+      writable: false
+    }
+  });
+  </pre></code>
+</section>
+-->
+
+<section class="slide" id="library_extensions">
+  <h2>Extending JavaScript</h2>
+  <pre><code>
+  var array = [1,2,3,4];
+  Array.prototype.contains = function(element) {
+      for(var i = 0; i &lt; this.length; i++) {
+          if (this[i] === element) {
+            return true;
+          }
+      }
+      return false;
+  };
+
+  array.contains(1);
+  &gt;&gt; true
+  </pre></code>
+</section>
+
+<section class="slide" id="scope">
+  <h1>Scope</h1>
+</section>
+
+<section class="slide" id="function_scope">
+  <h2>There is no block scope!</h2>
+  <pre><code>
+  function aFunction() {
+    var foo = 1;
+    if(true) {
+      var foo = 2;
+    }
+    //foo === 2
+  }
+  </pre></code>
+</section>
+
+<section class="slide" id="anonymous_wrapper">
+  <h2>Anonymous Wrapper</h2>
+  <pre><code>
+  (function() {
+    //do something, function has own scope
+    var foo = 5;
+  })();
+  //foo === undefined
+  </pre></code>
+</section>
+
+<section class="slide" id="global_variables">
+  <h2>Global Variables</h2>
+  <ul>
+    <li>JavaScript has no linker</li>
+    <li>everything uses the global window object</li>
+  </ul>
+
+  <pre><code>
+  var foo = 5;
+  window.foo
+  &gt;&gt; 5
+
+  //attention, implied global!
+  bar = 10;
+  window.bar
+  &gt;&gt; 10
+  </pre></code>
+</section>
+
+<section class="slide" id="module_pattern">
+  <h2>The module pattern</h2>
+  <pre><code>
+  var myModule = (function() {
+    var privateNumber = 0;
+    var privateFunction = function() {
+      //do something
+    };
+    return {
+      publicNumber: privateNumber++,
+      publicFunction: function() {
+        //do something
+      }
+    };
+  })();
+  </pre></code>
+</section>
+
+<section class="slide" id="future">
+  <h2>JavaScript Harmony</h2>
+  <ul>
+    <li>block scope with let keyword</li>
+    <li>consts with const keyword</li>
+    <li>modules</li>
+    <li>generators, list comprehensions</li>
+    <li>destructering</li>
+  </ul>
+</section>
+
+<!-- end slides raphael -->
+
 <section class="slide deck-current" id="node-title">
   <h1>What is Node.js</h1>
 </section>
