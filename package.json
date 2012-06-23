@@ -1,5 +1,5 @@
 {
-  "name" : "coffeescript-slides",
+  "name" : "javascript-slides",
   "description" : "Slides software using HTML5, CoffeeScript and Node.js",
   "version" : "1.0.0",
   "author" : "Sven Pfleiderer <sven@roothausen.de>",
