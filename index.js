@@ -7,6 +7,8 @@
 var Express = require('express');
 var Log4js = require('log4js');
 var WebSocket = require('./lib/websocket.js');
+var MemoryStore = Express.session.MemoryStore;
+var sessionStore = new MemoryStore();
 
 var PORT = 8080;
 var LOGFILE = __dirname + '/log/slideshow.log';
@@ -18,10 +20,15 @@ var logger = Log4js.getLogger('slideshow');
 var app = module.exports = Express.createServer();
 
 app.configure(function () {
-    app.use(app.router);
-    app.use(Express.static(__dirname + '/public'));
     app.use(Express.cookieParser());
-    app.use(Express.session({ secret: 'fljkasaskjfhdaskjf', key: 'js.presentation' }));
+    app.use(Express.session({
+          store: sessionStore,
+          key: 'slides.uid',
+          secret: 'fljkasaskjfhdaskjf'
+        }));
+
+    app.use(Express.static(__dirname + '/public'));
+    app.use(app.router);
   });
 
 app.configure('development', function () {
@@ -44,7 +51,15 @@ app.configure('production', function () {
     logger.setLevel('ERROR');
   });
 
+var io = require('socket.io').listen(app);
+WebSocket.handleSockets(io, logger, sessionStore);
+
 app.listen(PORT, function () {
-    WebSocket.createWebsocketServer(app, logger);
     logger.info('Server listening on port: http://localhost:' + PORT);
   });
+
+app.get('/auth', function (req, res) {
+    req.session.is_admin = true;
+    res.redirect('/');
+});
+
