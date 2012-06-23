@@ -178,7 +178,55 @@ exports.circumference = function (r) {
    <li>Process management</li>
    <li>And much more ...</li>
  </ul>
+ </section>
 
+ <section class="slide" id="node-npm">
+ <h1>What about other modules?</h1>
+ </section>
+
+ <section class="slide" id="node-npm-intro">
+ <h2>NPM: The Node Package Manager</h2>
+ <ul>
+   <li>Command line utility to manage dependencies</li>
+   <li>Community driven repository of third party libs</li>
+   <li>Bundled with Node.js since version 0.6</li>
+   <li>NPM package descriptor: package.json</li>
+ </ul>
+ </section>
+
+ <section class="slide" id="node-npm-package">
+ <h2>package.json</h2>
+  <div class="sample-content">
+  <pre class="prettyprint">
+{
+  "name" : "javascript-slides",
+  "description" : "Slides software using HTML5, CoffeeScript and Node.js",
+  "version" : "1.0.0",
+  "author" : "Realtime Webapps Team",
+  "directories" : { "lib" : "lib" },
+  "engines" : {
+    "node": "&lt;= 0.6.0",
+    "npm" : "&lt;= 1.1.*"
+  },
+  "dependencies": {
+     "express" : "&lt;= 3.0",
+     "log4js" : "&lt;= 0.5.0",
+     "sanitizer" : "&lt;= 0.0.15",
+     "socket.io" : "&lt;= 0.9.6"
+  }
+}
+ </pre>
+ </div>
+ </section>
+
+ <section class="slide" id="node-fazit">
+ <h2>Fazit</h2>
+ <ul>
+   <li>Well suited for I/O bound apps</li>
+   <li>Well suited for handling lots of connections</li>
+   <li>Node moves fast: You have to keep up</li>
+   <li>Not optimal for heavily CPU bound apps</li>
+ </ul>
  </section>
 
 
