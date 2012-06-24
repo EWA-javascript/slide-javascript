@@ -47,7 +47,7 @@
   <h2>Introduction</h2>
   <ul>
     <li>JavaScript is a brand of Sun Microsystems (today Oracle)</li>
-    <li>was formalized in the ECMA Script language standard</li>
+    <li>was formalized in the ECMAScript language standard</li>
 	<li>syntax similar to that of C</li>
 	<li>name contains "Java", but there are only a few similarities</li>
   </ul>
@@ -64,7 +64,7 @@
 </section>
 
 <section class="slide" id="introduction_3">
-  <h2>What JavaScript can do:</h2>
+  <h2>What JavaScript can do ...</h2>
   <ul>
 	<li>handle events</li>
     <li>validate form data</li>
@@ -116,10 +116,14 @@
 
 <section class="slide" id="comments">
   <h2>Comments</h2>
+  <h3>single line comment</h3>
   <div class="sample-content">
   <pre class="prettyprint">
   //this is a comment
-  
+  </pre>
+  </div>
+  <h3>multi line comment</h3>
+    <pre class="prettyprint">
   /*this is 
   another comment*/
   </pre>
@@ -129,18 +133,25 @@
 
 <section class="slide" id="data_types">
   <h2>Data Types</h2>
-  <ul>
-	<li>Numbers: (integer,) float</li>
-	<li>string</li>
-  </ul>
+  <h3>number (= integer/float)</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+  var year=2012;
+  var radius=3.7;
+  </pre>
+  </div>
+  <h3>string</h3>
   <div class="sample-content">
   <pre class="prettyprint">
   var name="This is a string";
   </pre>
   </div>
-  <ul>  
-	<li>boolean (true/false)</li>
-  </ul>
+  <h3>boolean (true/false)</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+  var myBoolean=new Boolean(true);
+  </pre>
+  </div> 
 </section>
 
 <section class="slide" id="operators_title">
@@ -184,12 +195,52 @@
 </section>
 
 <section class="slide" id="contional_statements">
-  <h2>Conditional Statements</h2>
-  <ul>
-	<li>if</li>
-	<li>if...else if...else</li>
-	<li>switch</li>
-  </ul>
+  <h2>Contional Statements</h2>
+  <h3>if</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+  var x="";
+  var time=new Date().getHours();
+  if (time<20){
+	x="Good day";
+  }
+  </pre>
+  </div> 
+  <h3>if ... else if ... else</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+  if (time<10){
+	x="Good morning";
+  }
+  else if (time<20){
+	x="Good day";
+  }
+  else{
+	x="Good evening";
+  } 
+  </pre>
+  </div>
+</section>
+
+<section class="slide" id="contional_statements_2">
+  <h2>Contional Statements (2)</h2>
+  <h3>switch ... case</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+  var x="";
+  var d=new Date().getDay();
+  switch (d){
+	case 6:
+		x="Today it's Saturday";
+		break;
+	case 0:
+		x="Today it's Sunday";
+		break;
+	default:
+		x="Looking forward to the Weekend";
+	}
+  </pre>
+  </div>
 </section>
 
 <section class="slide" id="loops">
@@ -197,16 +248,32 @@
   <h3>for loop</h3>
   <div class="sample-content">
   <pre class="prettyprint">
-  for (var i=0; i<10; i++) {
+  for (var i=0; i<3; i++) {
    document.write("This is a for loop.");
   }
   </pre>
   </div>
-  
-  <ul>
-	<li>while</li>
-	<li>do...while</li>
-  </ul>
+  <h3>while loop</h3>
+   <div class="sample-content">
+  <pre class="prettyprint">
+  var x="",i=0;
+  while (i<4){
+	x=x + "The number is " + i;
+	i++;
+  }
+  </pre>
+  </div>
+  <h3>do...while</h3>
+     <div class="sample-content">
+  <pre class="prettyprint">
+  var x="",i=0;
+  do{
+	x=x + "The number is " + i;
+	i++;
+  }
+  while (i<4)  
+  </pre>
+  </div>
 </section>
 
 
