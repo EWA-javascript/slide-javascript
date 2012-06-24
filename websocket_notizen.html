@@ -1,0 +1,48 @@
+Ressourcen:
+
+W3C Specification: http://dev.w3.org/html5/websockets/
+http://websocket.org/
+Mozilla Deveoper Network: https://developer.mozilla.org/en/WebSockets
+HTML5 rocks: http://www.html5rocks.com/en/tutorials/websockets/basics/
+Writing your own WebSocket server: http://altdevblogaday.com/2012/01/23/writing-your-own-websocket-server/
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+Eigenschaften von HTTP:
+Request / Response Paradigma, Client fordert eine Seite an und bekommt jene vom Server ausgeliefert. Danach besteht keine Verbindung mehr, bei einem erneuten Request wird eine neue Verbindung aufgebaut. State kann nur durch Middelware erreicht werden, welche ua cookies verwendet um einen Benutzer über mehrere Request zu identifizieren.
+→ ohne ‘Tricks’ kann der Server keine Daten zum Client pushen
+
+Bisherige Möglichkeiten um einen Push zu simulieren:
+- ajax polling: client fragt in festen Abständen, ob es neue Nachrichten für ihn gibt
+- ajax long polling: server wartet mit antwort, bis eine neue Nachricht für den Client vorliegt. Sollte innerhalb einer gewissen Zeit keine Nachricht vorliegen, teilt der Server dies dem Client mit um einen Timeout zu vermeiden. Client stellt nach Erhalten der Antwort sofort eine neue Anfrage.
+- hidden iframe: 
+
+Nachteile dieser Implemtierungen:
+- unnötige Requests belasten den Server
+- Jede Abfrage verursacht eine Overhead aufgrund des HTTP-Protokolls und dessen Header
+  → für Echtzeitanwendungen nicht geeignet
+
+
+WebSockets:
+- persistente Verbindung zwischen Server und Client, nachdem der Handshake erfolgt ist
+→ Handshake bietet auch die Möglichkeit unauthorisierte Clients abzuweisen
+- verwendet HTTP-Upgrade um eine HTTP-Verbindung zu einer WebSocket Verbindung  zu ändern, verwendet gleiche Ports wie HTTP und HTTPS
+- 
+
+
+
+
+History (kurz) - Final Draft
+		Unterschiede
+		Header, Aufbau, Handshake
+		Polling, Long Polling			http://www.heise.de/developer/artikel/WebSocket-Annaeherung-an-Echtzeit-im-Web-1260189.html?artikelseite=2
+		Kurzes Bsp
+	
+	Socket.IO
+
+		Erweiterungen, Vorteile
+		Unterstützung älterer Browser
+		Namespaces, Heartbeat
+		Kompatibilitäten
