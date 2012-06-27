@@ -929,12 +929,12 @@
   <h1>Node.js</h1>
 </section>
 
-<section class="slide deck-current" id="node-title">
+<section class="slide" id="node-history">
   <h2>Node.ks History</h2>
 <ul>
   <li>Ryan Dahl wanted to script network services ...</li>
   <li>Development started in 2009 and was sponsored by Joyent</li>
-  <li>Currently used by many different companies for all kinds of purposes</li>
+  <li>Currently used by <a href="http://filer.progstr.com/1/post/2012/04/my-nodejs-linksheet.html">many different companies</a> for all kinds of purposes</li>
   <li>Current version: 0.8.0 (June, 25th 2012)</li>
 </ul>
 </section>
@@ -960,7 +960,7 @@
 </section>
 
 <section class="slide" id="node-problem">
-<h2>Problem: This doesn't scale very well</h2>
+<h2>Problem: Scalability</h2>
 <ul>
   <li>Memory overhead</li>
   <li>Scheduling overhead</li>
@@ -998,9 +998,9 @@
 <p>A server side JavaScript runtime</p>
 
 <ul>
-  <li>An event loop system</li>
+  <li>An event loop system (libev/libuv)</li>
   <li>The V8 JS engine of Google Chrome</li>
-  <li>Wrappers around synchronous OS system calls</li>
+  <li>Wrappers around synchronous OS system calls (libeio)</li>
   <li>The commonJS module system</li>
   <li>A standard library</li>
 </ul>
@@ -1086,7 +1086,7 @@
  <h2>NPM: The Node Package Manager</h2>
  <ul>
    <li>Command line utility to manage dependencies</li>
-   <li>Community driven repository of third party libs</li>
+   <li>Community driven <a href="http://search.npmjs.org/">repository</a> of third party libs</li>
    <li>Bundled with Node.js since version 0.6</li>
    <li>NPM package descriptor: package.json</li>
  </ul>
@@ -1103,14 +1103,14 @@
       "author" : "Realtime Webapps Team",
       "directories" : { "lib" : "lib" },
       "engines" : {
-        "node": "&lt;= 0.6.0",
-        "npm" : "&lt;= 1.1.*"
+        "node": "&gt;= 0.6.0",
+        "npm" : "&gt;= 1.1.*"
       },
       "dependencies": {
-         "express" : "&lt;= 3.0",
-         "log4js" : "&lt;= 0.5.0",
-         "sanitizer" : "&lt;= 0.0.15",
-         "socket.io" : "&lt;= 0.9.6"
+         "express" : "&gt;= 3.0",
+         "log4js" : "&gt;= 0.5.0",
+         "sanitizer" : "&gt;= 0.0.15",
+         "socket.io" : "&gt;= 0.9.6"
       }
     }
  </pre>
