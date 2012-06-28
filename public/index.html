@@ -256,7 +256,7 @@
   var x="";
   var time=new Date().getHours();
   if (time<20){
-  x="Good day";
+  	x="Good day";
   }
   </pre>
   </div> 
@@ -266,13 +266,13 @@
   var x="";
   var time=new Date().getHours();
   if (time<10){
-  x="Good morning";
+  	x="Good morning";
   }
   else if (time<20){
-  x="Good day";
+  	x="Good day";
   }
   else{
-  x="Good evening";
+  	x="Good evening";
   } 
   </pre>
   </div>
@@ -287,13 +287,13 @@
   var d=new Date().getDay();
   switch (d){
   case 6:
-    x="Today it's Saturday";
+    	x="Today it's Saturday";
     break;
   case 0:
-    x="Today it's Sunday";
+    	x="Today it's Sunday";
     break;
   default:
-    x="Looking forward to the Weekend";
+    	x="Looking forward to the Weekend";
   }
   </pre>
   </div>
@@ -305,7 +305,7 @@
   <div class="sample-content">
   <pre class="prettyprint">
   for (var i=0; i<3; i++) {
-   document.write("This is a for loop.");
+  	document.write("This is a for loop.");
   }
   </pre>
   </div>
@@ -314,8 +314,8 @@
   <pre class="prettyprint">
   var x="",i=0;
   while (i<4){
-  x=x + "The number is " + i;
-  i++;
+  	x=x + "The number is " + i;
+  	i++;
   }
   </pre>
   </div>
@@ -324,8 +324,8 @@
   <pre class="prettyprint">
   var x="",i=0;
   do{
-  x=x + "The number is " + i;
-  i++;
+  	x=x + "The number is " + i;
+  	i++;
   }
   while (i<4)  
   </pre>
