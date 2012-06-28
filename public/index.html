@@ -44,17 +44,41 @@
   <!-- Raphael Brand, Sven Pfleiderer, Markus Schleehauf, Anna Regner -->
 </section>
 
+<section class="slide" id="realtime-web">
+  <h1>The Realtime Web</h1>
+</section>
+
+<section class="slide" id="realtime-web-intro">
+  <h2>What exactly is the realtime web?</h2>
+  <ul>
+  <li>Connecting users in (soft) realtime</li>
+  <li>Paradigm shift from request/response to push/pull</li>
+  <li>Core technology for a whole family of collaborative apps</li>
+  </ul>
+</section>
+
+<section class="slide" id="realtime-web-examples">
+  <h2>Realtime web applications you may know</h2>
+  <ul>
+  <li><a href="http://docs.google.com">Google Docs</a></li>
+  <li>Etherpad</li>
+  <li>Facebook Chat</li>
+  <li>Games (!!)</li>
+  <li>This presentation</li>
+  </ul>
+</section>
+
 <section class="slide" id="roadmap">
   <h2>Roadmap</h2>
-  
+
   <h4>Raphael Brand, Sven Pfleiderer, Markus Schleehauf, Anna Regner</h4>
-  
+
   <p>
-  
+
   <h3>First lesson (June, 28th 2012)</h3>
   <ul>
     <li>JavaScript</li>
-	<li>WebSockets</li>
+  <li>WebSockets</li>
     <li>Node.js</li>
   </ul>
   <h3>Second lesson (July, 05th 2012)</h3>
@@ -62,10 +86,10 @@
     <li>Socket.IO</li>
     <li>redis</li>
   </ul>
-  
+
   <h3>Realtime Slides</h3>
   <h4><a href="jabber.roothausen.de:8080">jabber.roothausen.de:8080</a></h4>
-  
+
 </section>
 
 <section class="slide" id="introduction_title">
@@ -76,9 +100,9 @@
   <h2>Introduction</h2>
   <ul>
     <li>was formalized in the ECMAScript language standard</li>
-	<li>syntax similar to that of C</li>
-	<li>name contains "Java", but there are only a few similarities</li>
-	<li>JavaScript is a brand of Sun Microsystems (today Oracle)</li>
+  <li>syntax similar to that of C</li>
+  <li>name contains "Java", but there are only a few similarities</li>
+  <li>JavaScript is a brand of Sun Microsystems (today Oracle)</li>
   </ul>
 </section>
 
@@ -87,19 +111,19 @@
   <ul>
     <li>dynamic behavior in a web page</li>
     <li>can be used as object-oriented language</li>
-	<li>client-side technology</li>
-	<li>easy to learn</li>
+  <li>client-side technology</li>
+  <li>easy to learn</li>
   </ul>
 </section>
 
 <section class="slide" id="introduction_3">
   <h2>What JavaScript can do ...</h2>
   <ul>
-	<li>handle events</li>
+  <li>handle events</li>
     <li>validate form data</li>
-	<li>modify the DOM tree</li>
-	<li>get information about the browser</li>
-	<li>access and modify browser cookies</li>
+  <li>modify the DOM tree</li>
+  <li>get information about the browser</li>
+  <li>access and modify browser cookies</li>
   </ul>
 </section>
 
@@ -119,18 +143,18 @@
 <section class="slide" id="usage">
   <h2>Usage</h2>
   <ul>
-	<li>&lt;SCRIPT> tags are used to write JavaScript code in HTML file</li>
-	<li>it can be placed in the &lt;HEAD> or the &lt;BODY> tag</li>
+  <li>&lt;SCRIPT> tags are used to write JavaScript code in HTML file</li>
+  <li>it can be placed in the &lt;HEAD> or the &lt;BODY> tag</li>
   </ul>
   <div class="sample-content">
   <pre class="prettyprint">
   &lt;SCRIPT LANGUAGE="JavaScript">
-	document.write("Hello!")
+  document.write("Hello!")
   &lt;/SCRIPT>
   </pre>
   </div>
   <ul>
-	<li>JavaScript in an external file, can be linked with an &lt;SCRIPT> tag</li>
+  <li>JavaScript in an external file, can be linked with an &lt;SCRIPT> tag</li>
   </ul>
   <div class="sample-content">
   <pre class="prettyprint">
@@ -232,7 +256,7 @@
   var x="";
   var time=new Date().getHours();
   if (time<20){
-	x="Good day";
+  x="Good day";
   }
   </pre>
   </div> 
@@ -242,13 +266,13 @@
   var x="";
   var time=new Date().getHours();
   if (time<10){
-	x="Good morning";
+  x="Good morning";
   }
   else if (time<20){
-	x="Good day";
+  x="Good day";
   }
   else{
-	x="Good evening";
+  x="Good evening";
   } 
   </pre>
   </div>
@@ -262,15 +286,15 @@
   var x="";
   var d=new Date().getDay();
   switch (d){
-	case 6:
-		x="Today it's Saturday";
-		break;
-	case 0:
-		x="Today it's Sunday";
-		break;
-	default:
-		x="Looking forward to the Weekend";
-	}
+  case 6:
+    x="Today it's Saturday";
+    break;
+  case 0:
+    x="Today it's Sunday";
+    break;
+  default:
+    x="Looking forward to the Weekend";
+  }
   </pre>
   </div>
 </section>
@@ -290,8 +314,8 @@
   <pre class="prettyprint">
   var x="",i=0;
   while (i<4){
-	x=x + "The number is " + i;
-	i++;
+  x=x + "The number is " + i;
+  i++;
   }
   </pre>
   </div>
@@ -300,8 +324,8 @@
   <pre class="prettyprint">
   var x="",i=0;
   do{
-	x=x + "The number is " + i;
-	i++;
+  x=x + "The number is " + i;
+  i++;
   }
   while (i<4)  
   </pre>
@@ -764,30 +788,30 @@
 
 
 <section  class="slide" id="polling">
-	<h2>Polling</h2>
+  <h2>Polling</h2>
 
-	<pre>
-		<img src="images/Polling.png" alt="Polling" width="407" height="464">
-	</pre>
+  <pre>
+    <img src="images/Polling.png" alt="Polling" width="407" height="464">
+  </pre>
 
 </section>
 
 <section  class="slide" id="longpolling">
-	<h2>Long Polling</h2>
-	<pre>
-		<img src="images/LongPolling.png" alt="LongPolling" width="417" height="476">
-	</pre>
+  <h2>Long Polling</h2>
+  <pre>
+    <img src="images/LongPolling.png" alt="LongPolling" width="417" height="476">
+  </pre>
 
 </section>
 
 <section  class="slide" id="polling_facts">
-	<h2>WebSockets</h2>
-				
-	<ul>
-		<li>stateless</li>
-		<li>traffic</li>
-		<li>useless information "no changes"</li>
-	</ul>
+  <h2>WebSockets</h2>
+
+  <ul>
+    <li>stateless</li>
+    <li>traffic</li>
+    <li>useless information "no changes"</li>
+  </ul>
 
 
 </section>
@@ -867,37 +891,37 @@
   <h2>WebSockets</h2>
 
   <pre>
-  
+
   <img src="images/WebSocket.png" alt="WebSocket" width="463" height="477">
-  
+
   </pre>
 
 </section>
 
 <section  class="slide" id="compare">
-	<h2>WebSockets</h2>
-	
-	<table border="0">
-		<tr>
-			<td>Long Polling <p></td>
-			<td>Polling</td>
-			<td>WebSockets</td>
-		</tr>
-		
-		
-		<tr>
-			<td>
-				<pre><img src="images/LongPolling.png" alt="LongPolling" width="396" height="367"></pre>
-			</td>
-			<td>
-				<pre><img src="images/Polling.png" alt="Polling" width="366" height="391"></pre>
-			</td>
-			<td>
-				<pre><img src="images/WebSocket.png" alt="WebSocket" width="387" height="357"></pre>
-			</td>
-		</tr>
-	</table>
-	
+  <h2>WebSockets</h2>
+
+  <table border="0">
+    <tr>
+      <td>Long Polling <p></td>
+      <td>Polling</td>
+      <td>WebSockets</td>
+    </tr>
+
+
+    <tr>
+      <td>
+        <pre><img src="images/LongPolling.png" alt="LongPolling" width="396" height="367"></pre>
+      </td>
+      <td>
+        <pre><img src="images/Polling.png" alt="Polling" width="366" height="391"></pre>
+      </td>
+      <td>
+        <pre><img src="images/WebSocket.png" alt="WebSocket" width="387" height="357"></pre>
+      </td>
+    </tr>
+  </table>
+
 </section>
 
 
