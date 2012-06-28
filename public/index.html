@@ -46,6 +46,11 @@
 
 <section class="slide" id="roadmap">
   <h2>Roadmap</h2>
+  
+  <h4>Raphael Brand, Sven Pfleiderer, Markus Schleehauf, Anna Regner</h4>
+  
+  <p>
+  
   <h3>First lesson (June, 28th 2012)</h3>
   <ul>
     <li>JavaScript</li>
@@ -57,6 +62,10 @@
     <li>Socket.IO</li>
     <li>redis</li>
   </ul>
+  
+  <h3>Realtime Slides</h3>
+  <h4><a href="jabber.roothausen.de:8080">jabber.roothausen.de:8080</a></h4>
+  
 </section>
 
 <section class="slide" id="introduction_title">
@@ -716,62 +725,39 @@
   <h1>WebSockets</h1>
 </section>
 
-<section  class="slide" id="until now">
+<section  class="slide" id="websockets_2">
   <h2>WebSockets</h2>
   Until WebSockets there was no way to send event driven events to the client.
   <p>
-  <h3>Why?</h3>
+  <h3>why?</h3>
 
   <ul>
     <li>HTTP is stateless</li>
       <ul>
-        <li>Request</li>
-        <li>Response</li>
+        <li>request</li>
+        <li>response</li>
         <li>HTTP is by default only halfduplex</li>
-        <li>2 Connections needed</li>
+        <li>2 connections needed</li>
       </ul>
-    <li>Store Session only with Tricks and Hacks</li>
+    <li>store session only with tricks and hacks</li>
       <ul>
-        <li>Cookies</li>
-        <li>Sessions</li>
-        <li>Using 'Observer Pattern'</li>
-        <li>Hacks and Tricks like Comet, Bayeux, Ajax Push ...</li>
+        <li>cookies</li>
+        <li>sessions</li>
+        <li>using 'observer pattern'</li>
+        <li>hacks and tricks like comet, bayeux, ajax push ...</li>
       </ul>
     <li> No server side initiated communication </li>
   </ul>
 
 </section>
 
-<section  class="slide" id="">
-  <h2>Polling</h2>
 
-  <pre>
-    <table border="0">
-      <tr>
-        <td>
-          <img src="images/Polling.png" alt="Polling" width="407" height="464">
-        </td>
-        <td>
-          <img src="images/LongPolling.png" alt="LongPolling" width="417" height="476">
-        </td>
-        <td>
-          <ul>
-            <li>Stateless</li>
-            <li>Traffic</li>
-            <li>Useless Information "No Changes"</li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </pre>
-=======
 <section  class="slide" id="polling">
 	<h2>Polling</h2>
 
 	<pre>
 		<img src="images/Polling.png" alt="Polling" width="407" height="464">
 	</pre>
->>>>>>> Pimp Polling
 
 </section>
 
@@ -787,9 +773,9 @@
 	<h2>WebSockets</h2>
 				
 	<ul>
-		<li>Stateless</li>
-		<li>Traffic</li>
-		<li>Useless Information "No Changes"</li>
+		<li>stateless</li>
+		<li>traffic</li>
+		<li>useless information "no changes"</li>
 	</ul>
 
 
@@ -827,8 +813,8 @@
   <ul>
     <li>single socket full duplex (bi-directional)</li>
     <li>pushing and pulling over one connection</li>
-    <li>Based on HTTP </li>
-    <li>Handshake</li>
+    <li>based on HTTP </li>
+    <li>handshake</li>
   </ul>
 
 </section>
@@ -866,26 +852,36 @@
 
 -->
 
-<section  class="slide" id="">
+<section  class="slide" id="websocket_ablauf">
   <h2>WebSockets</h2>
 
   <pre>
-    <table border="0">
-      <tr>
-        <td>
-          <img src="images/Polling.png" alt="Polling" width="407" height="464">
-        </td>
-        <td>
-          <img src="images/LongPolling.png" alt="LongPolling" width="417" height="476">
-        </td>
-        <td>
-          <img src="images/WebSocket.png" alt="WebSocket" width="463" height="477">
-        </td>
-      </tr>
-    </table>
+  
+  <img src="images/WebSocket.png" alt="WebSocket" width="463" height="477">
+  
   </pre>
 
 </section>
+
+<section  class="slide" id="compare">
+	<h2>WebSockets</h2>
+	
+	<table border="0">
+		<tr>
+			<td>Long Polling</td>
+			<td>Polling</td>
+			<td>WebSockets</td>
+		</tr>
+		
+		<tr>
+			<td><img src="images/LongPolling.png" alt="LongPolling" width="396" height="367"></td>
+			<td><img src="images/Polling.png" alt="Polling" width="366" height="391"></td>
+			<td><img src="images/WebSocket.png" alt="WebSocket" width="387" height="357"></td>
+		</tr>
+	</table>
+	
+</section>
+
 
 <section  class="slide" id="">
   <h2>WebSockets</h2>
@@ -959,17 +955,7 @@
 
 </section>
 
-<section  class="slide" id="script">
-  <h2>WebSockets</h2>
 
-  <pre>
-    <div class="sample-content">
-      var test haha &lt;script> Haha &lt;/script>
-
-    </div>
-  </pre>
-
-</section>
 
 <!-- end slides schlauch -->
 
