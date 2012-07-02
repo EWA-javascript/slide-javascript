@@ -1350,12 +1350,22 @@
   <h1>Web Frameworks</h1>
   </section>
 
+  <section class="slide" id="frameworks-intro">
+  <h2>Node.js has HTTP built in, BUT ...</h2>
+  <ul>
+    <li>the APIs are really low level</li>
+    <li>URL routing, session management, etc. has do be done "by hand"</li>
+    <li>there are LOTS of 3rd pary modules and helpers</li>
+    <li>problem: which ones work well and are maintained?</li>
+  </ul>
+  </section>
+
   <section class="slide" id="frameworks-intro-connect">
   <h2><a href="http://senchalabs.github.com/connect/">Connect</a></h2>
   <ul>
     <li>pluggable middleware framework</li>
     <li>lowlevel standard for most Node web-frameworks</li>
-    <li>Support for</li>
+    <li>support for:</li>
     <ul>
       <li>logging</li>
       <li>cookie/session management</li>
@@ -1370,9 +1380,10 @@
   <h2><a href="http://expressjs.com/">Express</a></h2>
   <ul>
     <li>small web framework</li>
+    <li>similar APIs to <a href="http://www.sinatrarb.com/">Sinatra (Ruby)</a></li>
     <li>built on connect middleware</li>
     <li>command line tool to generate projects</li>
-    <li>Support for</li>
+    <li>support for:</li>
     <ul>
       <li>URL Routing</li>
       <li>pluggable template rendering</li>
@@ -1380,7 +1391,6 @@
       <li>...</li>
     </ul>
   </ul>
-
   </section>
 
   <!-- end sides pfleidi session 2 -->
