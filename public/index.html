@@ -1383,6 +1383,15 @@
   </ul>
   </section>
 
+  <section class="slide" id="frameworks">
+  <h2>Solution: Middleware</h2>
+  <ul>
+    <li>WSGI (Python)</li>
+    <li>Rack (Ruby)</li>
+    <li>Connect (Node.js)</li>
+  </ul>
+  </section>
+
   <section class="slide" id="frameworks-intro-connect">
   <h2><a href="http://senchalabs.github.com/connect/">Connect</a></h2>
   <ul>
@@ -1414,6 +1423,38 @@
       <li>...</li>
     </ul>
   </ul>
+  </section>
+
+   <section class="slide" id="frameworks-middleware-intro">
+  <h2>Connect/Express middleware</h2>
+  <div class="sample-content">
+  <pre class="prettyprint">
+  function query(req, res, next) {
+    /* do stuff */
+
+    next(); // we're finished
+  };
+  </pre>
+  </div>
+  </section>
+
+  <section class="slide" id="frameworks-middleware-example">
+  <h2>Middleware example</h2>
+  <div class="sample-content">
+  <pre class="prettyprint">
+  module.exports = function query(options) {
+    return function query(req, res, next) {
+      if (!req.query) {
+        req.query = (req.url.indexOf('?') !== -1)
+          ? qs.parse(parse(req).query, options)
+          : {};
+      }
+
+      next();
+    };
+  };
+  </pre>
+  </div>
   </section>
 
   <!-- end sides pfleidi session 2 -->
