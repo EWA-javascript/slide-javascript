@@ -37,6 +37,117 @@
 
 
 <!-- Begin slides -->
+<!-- slides raphael session 2 -->
+<section class="slide" id="websocket_problems">
+  <h2>What about...</h2>
+    <ul>
+      <li>old / mobile browsers</li>
+      <li>timeouts / reconnects</li>
+      <li>authorization / authentifaction</li>
+      <li>a higher abstraction</li>
+    </ul>
+</section>
+
+<section class="slide" id="socketio_title">
+  <h1>Socket.IO</h1>
+</section>
+
+<section class="slide" id="browser_support">
+  <h2>Supported Browsers</h2>
+  <ul>
+    <li>Internet Explorer 5.5+</li>
+    <li>Safari 3+</li>
+    <li>Google Chrome 4+</li>
+    <li>Firefox 3+</li>
+    <li>Opera 10.61+</li>
+    <li>mobile browsers</li>
+  </ul>
+</section>
+
+<section class="slide" id="socketio_features">
+  <h2>Features</h2>
+  <ul>
+    <li>fallbacks</li>
+    <li>heartbeats / reconnects</li>
+    <li>rooms</li>
+    <li>namespaces</li>
+    <li>events</li>
+    <li>acknowledgments</li>
+    <li>volatile messages</li>
+  </ul>
+</section>
+
+<section class="slide" id="events">
+  <h2>Events</h2>
+    <div class="sample-content">
+    <pre class="prettyprint">
+      //SERVER
+      io.sockets.on('connection', function (socket) {
+        socket.emit('news', { hello: 'world' });
+        socket.on('my other event', function (data) {
+          console.log(data);
+        });
+      });
+
+      //CLIENT
+      socket.on('news', function (data) {
+        console.log(data);
+        socket.emit('my other event', { my: 'data' });
+      });
+    </pre>
+    </div>
+</section>
+
+<section class="slide" id="acknowledgments">
+  <h2>Acknowledgments</h2>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    //Server
+    socket.on('myEvent', function (data, ack) {
+      ack('got your message!');
+    });
+
+    //Client
+    socket.emit('myEvent', 'myMessage', function (data) {
+      console.log(data); // "got your message!"
+    });
+  </pre>
+  </div>
+</section>
+
+<section class="slide" id="rooms">
+  <h2>Rooms</h2>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    //Server
+    var io = require('io').listen(80);
+    socket.on("join", function (roomID) {
+      socket.join(roomID);
+      socket.on(roomID, function (message) {
+        io.sockets.in(roomID).emit(message);
+      });
+    });
+
+    //Client
+    socket.emit("join", "myRoom");
+    socket.emit("myRoom", "this is a message for a room");
+  </pre>
+  </div>
+</section>
+
+<section class="slide" id="broadcasting">
+  <h2>Volatile Message / Broadcasting</h2>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    //Server
+    io.sockets.broadcast.emit("myEvent", "myMessage");
+
+    io.sockets.broadcast.volatile.emit("volatileEvent", "myMessage");
+  </pre>
+  </div>
+</section>
+
+<!-- end slides raphael session 2 -->
 
 <!-- slides anna -->
 <section class="slide" id="main_title">
