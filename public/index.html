@@ -1230,6 +1230,251 @@
   </section>
 
   <!-- end slides pfleidi -->
+  
+  <!-- SESSION 2-->
+  
+<!-- slides raphael session 2 -->
+<section class="slide" id="main_title_2">
+	<h1>Realtime Web-Applications</h1>
+  </section>
+  
+  <section class="slide" id="roadmap_2">
+  <h2>Roadmap</h2>
+  <h4>Raphael Brand, Sven Pfleiderer, Markus Schleehauf, Anna Regner</h4>
+  <p>
+  <h3>First lesson (June, 28th 2012)</h3>
+  <ul>
+    <li>JavaScript</li>
+  <li>WebSockets</li>
+    <li>Node.js</li>
+  </ul>
+  <h3>Second lesson (July, 04th 2012)</h3>
+  <ul>
+    <li>Socket.IO</li>
+    <li>redis</li>
+  </ul>
+  <h3>Realtime Slides</h3>
+  <h4><a href="jabber.roothausen.de:8080">jabber.roothausen.de:8080</a></h4>
+</section> 
+ 
+<section class="slide" id="websocket_problems">
+  <h2>What about...</h2>
+    <ul>
+      <li>old / mobile browsers</li>
+      <li>timeouts / reconnects</li>
+      <li>authorization / authentifaction</li>
+      <li>a higher abstraction</li>
+    </ul>
+</section>
+
+<section class="slide" id="socketio_title">
+  <h1>Socket.IO</h1>
+</section>
+
+<section class="slide" id="browser_support">
+  <h2>Supported Browsers</h2>
+  <ul>
+    <li>Internet Explorer 5.5+</li>
+    <li>Safari 3+</li>
+    <li>Google Chrome 4+</li>
+    <li>Firefox 3+</li>
+    <li>Opera 10.61+</li>
+    <li>mobile browsers</li>
+  </ul>
+</section>
+
+<section class="slide" id="socketio_features">
+  <h2>Features</h2>
+  <ul>
+    <li>fallbacks</li>
+    <li>heartbeats / reconnects</li>
+    <li>rooms</li>
+    <li>namespaces</li>
+    <li>events</li>
+    <li>acknowledgments</li>
+    <li>volatile messages</li>
+  </ul>
+</section>
+
+<section class="slide" id="events">
+  <h2>Events</h2>
+    <div class="sample-content">
+    <pre class="prettyprint">
+      //SERVER
+      io.sockets.on('connection', function (socket) {
+        socket.emit('news', { hello: 'world' });
+        socket.on('my other event', function (data) {
+          console.log(data);
+        });
+      });
+
+      //CLIENT
+      socket.on('news', function (data) {
+        console.log(data);
+        socket.emit('my other event', { my: 'data' });
+      });
+    </pre>
+    </div>
+</section>
+
+<section class="slide" id="acknowledgments">
+  <h2>Acknowledgments</h2>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    //Server
+    socket.on('myEvent', function (data, ack) {
+      ack('got your message!');
+    });
+
+    //Client
+    socket.emit('myEvent', 'myMessage', function (data) {
+      console.log(data); // "got your message!"
+    });
+  </pre>
+  </div>
+</section>
+
+<section class="slide" id="rooms">
+  <h2>Rooms</h2>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    //Server
+    var io = require('io').listen(80);
+    socket.on("join", function (roomID) {
+      socket.join(roomID);
+      socket.on(roomID, function (message) {
+        io.sockets.in(roomID).emit(message);
+      });
+    });
+
+    //Client
+    socket.emit("join", "myRoom");
+    socket.emit("myRoom", "this is a message for a room");
+  </pre>
+  </div>
+</section>
+
+<section class="slide" id="broadcasting">
+  <h2>Volatile Message / Broadcasting</h2>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    //Server
+    io.sockets.broadcast.emit("myEvent", "myMessage");
+
+    io.sockets.broadcast.volatile.emit("volatileEvent", "myMessage");
+  </pre>
+  </div>
+</section>
+
+<!-- end slides raphael session 2 -->
+  
+  <!-- start slides Anna-->
+  
+  <section class="slide" id="redis">
+	<h1>redis</h1>
+  </section>
+  
+  <section class="slide" id="redis_introduction">
+	<h2>What is redis?</h2>
+	<blockquote>
+    <p>Redis is an open source, advanced key-value store. It is often referred to as a 
+	data structure server since keys can contain strings, hashes, lists, sets and sorted sets.</p>
+    <p><cite>redis.io</cite></p>
+  </blockquote>
+  </section>
+  
+    
+  <section class="slide" id="redis_introduction">
+	<h2>What is redis?</h2>	
+	<ul>
+	  <li>redis = REmote DIctionary Server</li>
+	  <li>a key-value data store</li>
+	  <li>belongs to NoSQL DBs</li>	  
+	</ul>
+  </section>
+  
+  <section class="slide" id="history">
+	<h2>History</h2>	
+	<ul>
+	  <li>developed by Salvatore Sanfilippo</li>
+	  <li>released in March 2009</li>
+	  <li>development is sponsored by VMWare</li> <!-- Er arbeitet inzwischen vollzeit an redis -->
+	  <li>Open Source</li>
+	  <li>BSD (Berkeley Software Distribution) license</li>
+	</ul>
+  </section>
+  
+  <section class="slide" id="facts">
+	<h2>Facts</h2>	
+	<ul>
+	  <li>keys mapped to values</li>
+	  <li>for simple data structure</li>
+	  <li>faster than e.g. MySQL</li>
+	  <li>about 100.000 wrinting processes per socond<\li>
+	  <li>about 80.000 reading processes per second</li>
+	  <li>scalability</li>
+	  <li>written in ANSI C - only about 16.000 lines of code</li>
+	  <li>Redis typically holds the whole dataset in RAM - In-Memory DB (IMDB)</li>
+	  <!-- mangelhaften Persistenz
+	  nur dort eingesetzt werden kann wo keine ACID-konforme Dauerhaftigkeit der Transaktionen gefordert ist. -->
+	</ul>
+  </section>
+  
+  <section class="slide" id="advantages"> 
+  	<h2>Advantages</h2>	
+	<ul>
+	  <li>"scales down as well as up"</li>
+	  <li>handles writes faster than reads</li>
+	  <li></li>
+	</ul>
+  </section>
+  
+  <section class="slide" id="disadvantages">
+	<h2>Disadvantages</h2>	
+	<ul>
+	  <li></li>
+	  <li></li>
+	  <li></li>
+	</ul>
+  </section>
+  
+  <section class="slide" id="usage">
+	<h2>Usage</h2>	
+	<ul>
+	  <li>systems where a quick responsetime is needed, e.g. emergency system</li>
+	  <li></li>
+	  <li></li>
+	</ul>
+  </section> 
+  
+  <section class="slide" id="data_model">
+	<h2>Data Model</h2>	
+	<ul>
+	  <li>"value" can not only contain strings</li>
+	  <li>It can also contain:
+	  <ul>
+		<li>Lists of strings</li>
+		<li>Sets of strings (collections of non-repeating unsorted elements)</li>
+		<li>Sorted sets of strings (collections of non-repeating elements ordered by a floating-point number called score)</li>
+		<li>Hashes where keys and values are strings</li>
+	  <ul>	
+	  </li>
+	</ul>
+  </section>
+    
+  <section class="slide" id="test_redis">
+	<h2>Test redis</h2>	
+	<h3><a href="http://try.redis-db.com/">http://try.redis-db.com/</a></h3>
+	<ul>
+	  <li>interactiv test of redis in your browser</li>
+	</ul>
+	<h3><a href="https://github.com/antirez/redis/">https://github.com/antirez/redis/</a></h3>
+	<ul>
+	  <li>redis on GitHub</li>
+	</ul>
+  </section>
+  
+  <!-- End slides Anna-->
 
   <!-- slides raphael session 2 -->
 <section class="slide" id="websocket_problems">
