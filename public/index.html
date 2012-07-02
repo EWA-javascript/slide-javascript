@@ -37,117 +37,6 @@
 
 
 <!-- Begin slides -->
-<!-- slides raphael session 2 -->
-<section class="slide" id="websocket_problems">
-  <h2>What about...</h2>
-    <ul>
-      <li>old / mobile browsers</li>
-      <li>timeouts / reconnects</li>
-      <li>authorization / authentifaction</li>
-      <li>a higher abstraction</li>
-    </ul>
-</section>
-
-<section class="slide" id="socketio_title">
-  <h1>Socket.IO</h1>
-</section>
-
-<section class="slide" id="browser_support">
-  <h2>Supported Browsers</h2>
-  <ul>
-    <li>Internet Explorer 5.5+</li>
-    <li>Safari 3+</li>
-    <li>Google Chrome 4+</li>
-    <li>Firefox 3+</li>
-    <li>Opera 10.61+</li>
-    <li>mobile browsers</li>
-  </ul>
-</section>
-
-<section class="slide" id="socketio_features">
-  <h2>Features</h2>
-  <ul>
-    <li>fallbacks</li>
-    <li>heartbeats / reconnects</li>
-    <li>rooms</li>
-    <li>namespaces</li>
-    <li>events</li>
-    <li>acknowledgments</li>
-    <li>volatile messages</li>
-  </ul>
-</section>
-
-<section class="slide" id="events">
-  <h2>Events</h2>
-    <div class="sample-content">
-    <pre class="prettyprint">
-      //SERVER
-      io.sockets.on('connection', function (socket) {
-        socket.emit('news', { hello: 'world' });
-        socket.on('my other event', function (data) {
-          console.log(data);
-        });
-      });
-
-      //CLIENT
-      socket.on('news', function (data) {
-        console.log(data);
-        socket.emit('my other event', { my: 'data' });
-      });
-    </pre>
-    </div>
-</section>
-
-<section class="slide" id="acknowledgments">
-  <h2>Acknowledgments</h2>
-  <div class="sample-content">
-  <pre class="prettyprint">
-    //Server
-    socket.on('myEvent', function (data, ack) {
-      ack('got your message!');
-    });
-
-    //Client
-    socket.emit('myEvent', 'myMessage', function (data) {
-      console.log(data); // "got your message!"
-    });
-  </pre>
-  </div>
-</section>
-
-<section class="slide" id="rooms">
-  <h2>Rooms</h2>
-  <div class="sample-content">
-  <pre class="prettyprint">
-    //Server
-    var io = require('io').listen(80);
-    socket.on("join", function (roomID) {
-      socket.join(roomID);
-      socket.on(roomID, function (message) {
-        io.sockets.in(roomID).emit(message);
-      });
-    });
-
-    //Client
-    socket.emit("join", "myRoom");
-    socket.emit("myRoom", "this is a message for a room");
-  </pre>
-  </div>
-</section>
-
-<section class="slide" id="broadcasting">
-  <h2>Volatile Message / Broadcasting</h2>
-  <div class="sample-content">
-  <pre class="prettyprint">
-    //Server
-    io.sockets.broadcast.emit("myEvent", "myMessage");
-
-    io.sockets.broadcast.volatile.emit("volatileEvent", "myMessage");
-  </pre>
-  </div>
-</section>
-
-<!-- end slides raphael session 2 -->
 
 <!-- slides anna -->
 <section class="slide" id="main_title">
@@ -289,7 +178,7 @@
   </div>
   <h3>multi line comment</h3>
     <pre class="prettyprint">
-  /*this is 
+  /*this is
   another comment*/
   </pre>
   </div>
@@ -316,7 +205,7 @@
   <pre class="prettyprint">
   var myBoolean=true;
   </pre>
-  </div> 
+  </div>
 </section>
 
 <section class="slide" id="operators_title">
@@ -367,24 +256,24 @@
   var x="";
   var time=new Date().getHours();
   if (time<20){
-  	x="Good day";
+    x="Good day";
   }
   </pre>
-  </div> 
+  </div>
   <h3>if ... else if ... else</h3>
   <div class="sample-content">
   <pre class="prettyprint">
   var x="";
   var time=new Date().getHours();
   if (time<10){
-  	x="Good morning";
+    x="Good morning";
   }
   else if (time<20){
-  	x="Good day";
+    x="Good day";
   }
   else{
-  	x="Good evening";
-  } 
+    x="Good evening";
+  }
   </pre>
   </div>
 </section>
@@ -398,13 +287,13 @@
   var d=new Date().getDay();
   switch (d){
   case 6:
-    	x="Today it's Saturday";
+      x="Today it's Saturday";
     break;
   case 0:
-    	x="Today it's Sunday";
+      x="Today it's Sunday";
     break;
   default:
-    	x="Looking forward to the Weekend";
+      x="Looking forward to the Weekend";
   }
   </pre>
   </div>
@@ -416,7 +305,7 @@
   <div class="sample-content">
   <pre class="prettyprint">
   for (var i=0; i<3; i++) {
-  	document.write("This is a for loop.");
+    document.write("This is a for loop.");
   }
   </pre>
   </div>
@@ -425,8 +314,8 @@
   <pre class="prettyprint">
   var x="",i=0;
   while (i<4){
-  	x=x + "The number is " + i;
-  	i++;
+    x=x + "The number is " + i;
+    i++;
   }
   </pre>
   </div>
@@ -435,10 +324,10 @@
   <pre class="prettyprint">
   var x="",i=0;
   do{
-  	x=x + "The number is " + i;
-  	i++;
+    x=x + "The number is " + i;
+    i++;
   }
-  while (i<4)  
+  while (i<4)
   </pre>
   </div>
 </section>
@@ -858,14 +747,14 @@
 </section>
 
 <section  class="slide" id="koans">
-  	<h1>It´s time to work...</h1>
-  	<h2>JavaScript Koans</h2> 
+    <h1>It´s time to work...</h1>
+    <h2>JavaScript Koans</h2>
 </section>
 
 <section  class="slide" id="VM">
-  	<h2>Login VM</h2> 
-	<h3>Username: ewa</h3>
-	<h3>Password: ewa</h3>  
+    <h2>Login VM</h2>
+  <h3>Username: ewa</h3>
+  <h3>Password: ewa</h3>
 </section>
 
 <!-- end slides raphael -->
@@ -1320,30 +1209,182 @@
     <li>not optimal for heavily CPU bound apps</li>
   </ul>
   </section>
-  
+
   <section  class="slide" id="exercise">
-  	<h1>It´s time to work...</h1>
-  	<h2>Exercise</h2>
-  
+    <h1>It´s time to work...</h1>
+    <h2>Exercise</h2>
+
   </section>
-  
+
   <section  class="slide" id="end">
-  	<h2>Now try this with IE...</h2>
-  	
-  	<img src="images/ie_cat.jpeg" alt="ie_cat" width="350" height="323">
-  
+    <h2>Now try this with IE...</h2>
+
+    <img src="images/ie_cat.jpeg" alt="ie_cat" width="350" height="323">
+
   </section>
-  
+
   <section  class="slide" id="nextmodule">
-  	<h2>Solution is called Socket.IO and redis - Looking forward to next session...</h2>
-  	<img src="images/CatSuperhero.jpg" alt="CatSuperhero" width="375" height="276">
-  
+    <h2>Solution is called Socket.IO and redis - Looking forward to next session...</h2>
+    <img src="images/CatSuperhero.jpg" alt="CatSuperhero" width="375" height="276">
+
   </section>
-  
-  
-  
 
   <!-- end slides pfleidi -->
+
+  <!-- slides raphael session 2 -->
+<section class="slide" id="websocket_problems">
+  <h2>What about...</h2>
+    <ul>
+      <li>old / mobile browsers</li>
+      <li>timeouts / reconnects</li>
+      <li>authorization / authentifaction</li>
+      <li>a higher abstraction</li>
+    </ul>
+</section>
+
+<section class="slide" id="socketio_title">
+  <h1>Socket.IO</h1>
+</section>
+
+<section class="slide" id="browser_support">
+  <h2>Supported Browsers</h2>
+  <ul>
+    <li>Internet Explorer 5.5+</li>
+    <li>Safari 3+</li>
+    <li>Google Chrome 4+</li>
+    <li>Firefox 3+</li>
+    <li>Opera 10.61+</li>
+    <li>mobile browsers</li>
+  </ul>
+</section>
+
+<section class="slide" id="socketio_features">
+  <h2>Features</h2>
+  <ul>
+    <li>fallbacks</li>
+    <li>heartbeats / reconnects</li>
+    <li>rooms</li>
+    <li>namespaces</li>
+    <li>events</li>
+    <li>acknowledgments</li>
+    <li>volatile messages</li>
+  </ul>
+</section>
+
+<section class="slide" id="events">
+  <h2>Events</h2>
+    <div class="sample-content">
+    <pre class="prettyprint">
+      //SERVER
+      io.sockets.on('connection', function (socket) {
+        socket.emit('news', { hello: 'world' });
+        socket.on('my other event', function (data) {
+          console.log(data);
+        });
+      });
+
+      //CLIENT
+      socket.on('news', function (data) {
+        console.log(data);
+        socket.emit('my other event', { my: 'data' });
+      });
+    </pre>
+    </div>
+</section>
+
+<section class="slide" id="acknowledgments">
+  <h2>Acknowledgments</h2>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    //Server
+    socket.on('myEvent', function (data, ack) {
+      ack('got your message!');
+    });
+
+    //Client
+    socket.emit('myEvent', 'myMessage', function (data) {
+      console.log(data); // "got your message!"
+    });
+  </pre>
+  </div>
+</section>
+
+<section class="slide" id="rooms">
+  <h2>Rooms</h2>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    //Server
+    var io = require('io').listen(80);
+    socket.on("join", function (roomID) {
+      socket.join(roomID);
+      socket.on(roomID, function (message) {
+        io.sockets.in(roomID).emit(message);
+      });
+    });
+
+    //Client
+    socket.emit("join", "myRoom");
+    socket.emit("myRoom", "this is a message for a room");
+  </pre>
+  </div>
+</section>
+
+<section class="slide" id="broadcasting">
+  <h2>Volatile Message / Broadcasting</h2>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    //Server
+    io.sockets.broadcast.emit("myEvent", "myMessage");
+
+    io.sockets.broadcast.volatile.emit("volatileEvent", "myMessage");
+  </pre>
+  </div>
+  </section>
+
+  <!-- end slides raphael session 2 -->
+
+  <!-- start sides pfleidi session 2 -->
+
+
+  <section class="slide" id="frameworks">
+  <h1>Web Frameworks</h1>
+  </section>
+
+  <section class="slide" id="frameworks-intro-connect">
+  <h2><a href="http://senchalabs.github.com/connect/">Connect</a></h2>
+  <ul>
+    <li>pluggable middleware framework</li>
+    <li>lowlevel standard for most Node web-frameworks</li>
+    <li>Support for</li>
+    <ul>
+      <li>logging</li>
+      <li>cookie/session management</li>
+      <li>query parsing</li>
+      <li>HTTP compression</li>
+      <li>...</li>
+    </ul>
+  </ul>
+  </section>
+
+  <section class="slide" id="frameworks-intro-express">
+  <h2><a href="http://expressjs.com/">Express</a></h2>
+  <ul>
+    <li>small web framework</li>
+    <li>built on connect middleware</li>
+    <li>command line tool to generate projects</li>
+    <li>Support for</li>
+    <ul>
+      <li>URL Routing</li>
+      <li>pluggable template rendering</li>
+      <li>content negotiation</li>
+      <li>...</li>
+    </ul>
+  </ul>
+
+  </section>
+
+  <!-- end sides pfleidi session 2 -->
+
 
   <!-- End slides -->
 
