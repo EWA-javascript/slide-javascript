@@ -1420,9 +1420,11 @@
 
   <!-- start slides Anna session 2-->
   
-  <section class="slide" id="redis">
-	<h1>redis</h1>
-  </section>
+<section class="slide" id="redis">
+  <h1>
+    <img src="images/redis-logo.png" alt="redis" >
+  </h1>
+</section>
   
   <section class="slide" id="redis_introduction">
 	<h2>What is redis?</h2>
@@ -1455,16 +1457,21 @@
   </section>
   
   <section class="slide" id="facts">
-	<h2>Facts</h2>	
+	<h2>Facts ...</h2>	
 	<ul>
 	  <li>keys mapped to values</li>
 	  <li>for simple data structure</li>
-	  <li>faster than e.g. MySQL</li>
-	  <li>about 100.000 wrinting processes per socond<\li>
-	  <li>about 80.000 reading processes per second</li>
-	  <li>scalability</li>
 	  <li>written in ANSI C - only about 16.000 lines of code</li>
-	  <li>Redis typically holds the whole dataset in RAM - In-Memory DB (IMDB)</li>
+	</ul>
+  </section>
+  
+  <section class="slide" id="more_facts">
+	<h2>... more Facts</h2>	
+	<ul>
+	  <li>faster than e.g. MySQL</li>
+	  <li>about 100.000 wrinting processes per socond</li>
+	  <li>about 80.000 reading processes per second</li>
+	  <li>redis typically holds the whole dataset in RAM - In-Memory DB (IMDB)</li>
 	  <!-- mangelhaften Persistenz
 	  nur dort eingesetzt werden kann wo keine ACID-konforme Dauerhaftigkeit der Transaktionen gefordert ist. -->
 	</ul>
@@ -1473,16 +1480,16 @@
   <section class="slide" id="advantages"> 
   	<h2>Advantages</h2>	
 	<ul>
-	  <li>"scales down as well as up"</li>
+	  <li>"scales down as well as up" because of the simple data structure (scalability)</li>
 	  <li>handles writes faster than reads</li>
-	  <li></li>
+	  <li>APIs for many different programming languages available</li>
 	</ul>
   </section>
   
   <section class="slide" id="disadvantages">
 	<h2>Disadvantages</h2>	
 	<ul>
-	  <li></li>
+	  <li>persistence: </li>
 	  <li></li>
 	  <li></li>
 	</ul>
@@ -1492,8 +1499,8 @@
 	<h2>Usage</h2>	
 	<ul>
 	  <li>systems where a quick response time is needed, e.g. emergency system</li>
-	  <li></li>
-	  <li></li>
+	  <li>systems where a key-value structure is needed, e.g. sessionhandling in a websystem</li>
+	  <li><a href="http://redis.io/topics/whos-using-redis">who is using redis?</a></li>
 	</ul>
   </section> 
   
@@ -1523,6 +1530,220 @@
 	  <li>redis on GitHub</li>
 	</ul>
   </section>
+  
+<section  class="slide" id="exercise_redis">
+  <h1>It´s time to work...</h1>
+  <h2>Exercise</h2>
+</section>
+
+<section  class="slide" id="start_redis">
+  <h2>Start redis</h2>
+  <!-- hier noch infos ergänzen -->
+  <h3>see if redis works fine</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    ping
+  </pre>
+  </div>
+</section>
+  
+<section  class="slide" id="set_get">
+  <h2>SET - GET</h2>
+  <h3>store a value inside a key</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+	SET server:name "myTestServer"
+  </pre>
+  </div>
+  <h3>get the value</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+	GET server:name
+  </pre>
+  </div>
+</section>
+
+<section  class="slide" id="setnx_incr_del">
+  <h2>SETNX, INCR, DEL</h2>
+  <h3>set-if-not-exists</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+	SETNX server:number 5
+  </pre>
+  </div>
+  <h3>increment a number stored at a given key</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+	INCR server:number
+  </pre>
+  </div>
+  <h3>delete a key and the associated value</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+	DEL server:number
+  </pre>
+  </div>
+</section>
+  
+<section  class="slide" id="incr">
+  <h2>Why do we need the operation INRC?</h2>
+  <h3>You can also do it this way:</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+	x = GET count
+	x = x + 1
+	SET count x
+  </pre>
+  </div>
+  <h3>this will only work with a single client ...</h3>
+  <ol>
+	<li>Client A reads count as 10</li>
+	<li>Client B reads count as 10</li>
+	<li>Client A increments 10 and sets count to 11</li>
+	<li>Client B increments 10 and sets count to 11</li>
+  </ol>
+  <h3>The value should be 12!</h3>
+  <h3>-> We should use the atomic operation INCR!</h3>
+</section>
+  
+<section  class="slide" id="expire_ttl">
+  <h2>EXPIRE, TTL</h2>
+  <h3>expiration of a key (in seconds)</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    SET resource:lock "Redis Demo"
+    EXPIRE resource:lock 120
+  </pre>
+  </div>
+  <h3>number of seconds untill it will be deleted</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    TTL resource:lock
+    TTL server:name
+  </pre>
+  </div>
+  <h3>note: TTL will reset, if you set a key.</h3>
+</section>
+
+<section  class="slide" id="rpush_lpush_lrange">
+  <h2>A List - RPUSH, LPUSH, LRANGE</h2>
+  <h3>put a new value at the end of the list</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    RPUSH friends "Bob"
+    RPUSH friends "Chris"
+  </pre>
+  </div>
+  <h3>put a new value at the start of the list </h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    LPUSH friends "Ann"
+  </pre>
+  </div>
+  <h3>show a subset of the list</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    LRANGE friends 0 -1
+    LRANGE friends 1 2
+  </pre>
+  </div>
+</section>
+
+<section  class="slide" id="llen_lpop_rpop">
+  <h2>LLEN, LPOP, RPOP</h2>
+  <h3>get the current length of the list</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    LLEN friends
+  </pre>
+  </div>
+  <h3>remove the last element of the list and return it</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    LPOP friends
+  </pre>
+  </div>
+  <h3>remove the first element of the list and return it</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    RPOP friends
+  </pre>
+  </div>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    LLEN friends
+    LRANGE friends 0 -1
+  </pre>
+  </div>
+</section>
+
+<section  class="slide" id="sadd_smember_srem">
+  <h2>A Set - SADD, SMEMBER, SREM</h2>
+  <h3>A set does not have a specific order, each element may only appear once.</h3>
+  <h3>add a given value to the set</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    SADD pets "cat"
+    SADD pets "dog"
+    SADD pets "bird"
+  </pre>
+  </div>
+  <h3>return all elements of the set</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    SMEMBERS pets
+  </pre>
+  </div>
+  <h3>remove a value from the set</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    SREM pets "bird"
+  </pre>
+  </div>
+</section>
+
+<section  class="slide" id="sismember_union">
+  <h2>A Set - SISMEMBER, SUNION</h2>
+  <h3>test if the given value is in the set</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    SISMEMBER pets "dog"
+    SISMEMBER pets "bird"
+  </pre>
+  </div>
+  <h3>combine two or more sets and return the list of all elements</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    SADD wildanimals "lion"
+    SADD wildanimals "giraffe"
+    SUNION wildanimals pets
+  </pre>
+  </div>
+</section>
+
+<section  class="slide" id="zadd_zrange">
+  <h2>A Sorted Set - ZADD, ZRANGE</h2>
+  <h3>In a sorted set each element has an associated score.</h3>
+  <h3>add a given value to the sorted set</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    ZADD hackers 1940 "Alan Kay"
+    ZADD hackers 1953 "Richard Stallman"
+    ZADD hackers 1965 "Yukihiro Matsumoto"
+    ZADD hackers 1916 "Claude Shannon"
+    ZADD hackers 1969 "Linus Torvalds"
+    ZADD hackers 1912 "Alan Turing"
+  </pre>
+  </div>
+  <h3>return the values of the set</h3>
+  <div class="sample-content">
+  <pre class="prettyprint">
+    ZRANGE hackers 2 4
+  </pre>
+  </div>
+</section>
+
+
   
   <!-- End slides Anna session 2 -->
 
