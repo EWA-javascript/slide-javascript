@@ -1339,7 +1339,6 @@
   <div class="sample-content">
   <pre class="prettyprint">
     //Server
-    var io = require('io').listen(80);
     socket.on("join", function (roomID) {
       socket.join(roomID);
       socket.on(roomID, function (message) {
