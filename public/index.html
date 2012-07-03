@@ -1457,6 +1457,144 @@
   </div>
   </section>
 
+  <section class="slide" id="frameworks-middleware-usage">
+  <h2>Using middleware</h2>
+  <div class="sample-content">
+  <pre class="prettyprint">
+  var app = require('express').createServer({ key: ... });
+
+  app.configure(function(){
+    app.use(express.methodOverride());
+    app.use(express.bodyParser());
+    app.use(myModule.query());
+    app.use(app.router);
+  });
+  </pre>
+  </div>
+  </section>
+
+  <section class="slide" id="frameworks-express-routing">
+  <h2>Express Routing</h2>
+  <div class="sample-content">
+  <pre class="prettyprint">
+  var app = require('express').createServer({ key: ... });
+
+  app.get('/user/:id', function(req, res){
+    res.send('user ' + req.params.id);
+  });
+
+  app.get(/^\/users?(?:\/(\d+)(?:\.\.(\d+))?)?/, function(req, res){
+    res.send(req.params);
+  });
+
+  /* works also for */
+  app.put(...)
+  app.delete(...)
+  </pre>
+  </div>
+  </section>
+
+  <section class="slide" id="frameworks-express-routing-forms">
+  <h2>Processing HTTP POST</h2>
+  <div class="sample-content">
+  <pre class="prettyprint">
+  var express = require('express')
+  , app = express.createServer();
+
+  app.use(express.bodyParser());
+
+  app.post('/', function(req, res){
+    res.send(req.body);
+  });
+  </pre>
+  </div>
+  </section>
+
+  <section class="slide" id="frameworks-express-templates">
+  <h2>Express template engines</h2>
+  <ul>
+    <li><a href="http://github.com/visionmedia/haml.js">Haml</a></li>
+    <li><a href="http://jade-lang.com/">Jade</a></li>
+    <li><a href="http://github.com/visionmedia/ejs">EJS</a></li>
+    <li><a href="http://github.com/mauricemach/coffeekup">CoffeeKup</a></li>
+    <li><a href="https://github.com/kof/node-jqtpl">JQuery Templates</a></li>
+    <li>...</li>
+  </ul>
+  </section>
+
+   <section class="slide" id="frameworks-express-templates-jade">
+  <h2>Jade Template</h2>
+  <div class="sample-content">
+  <pre class="prettyprint">
+  doctype 5
+  html(lang="en")
+    head
+      title= #{title}
+      script(type='text/javascript')
+        if (foo) {
+          bar()
+        }
+    body
+      h1 Jade - node template engine
+      #container
+        if youAreUsingJade
+          p You are amazing
+        else
+          p Get on it!
+  </pre>
+  </div>
+  </section>
+
+  <section class="slide" id="frameworks-express-templates-render">
+  <h2>Rendering Templates</h2>
+  <div class="sample-content">
+  <pre class="prettyprint">
+  app.get('/', function(req, res){
+    res.render('index.jade', { title: 'My Site' });
+  });
+  </pre>
+  </div>
+  </section>
+
+  <section class="slide" id="cluster">
+  <h1>Clustering</h1>
+  </section>
+
+  <section class="slide" id="cluster-intro">
+  <h2>Node.js is fast, but</h2>
+  <ul>
+    <li>single threaded</li>
+    <li>single process</li>
+  </ul>
+  <p>What do we do, if we want to use several cores?</p>
+  </section>
+
+  <section class="slide" id="cluster-example">
+  <h2>The Node.js <a href="http://nodejs.org/api/cluster.html">cluster module</a></h2>
+  <div class="sample-content">
+  <pre class="prettyprint">
+  var cluster = require('cluster');
+  var http = require('http');
+  var numCPUs = require('os').cpus().length;
+
+  if (cluster.isMaster) {
+    for (var i = 0; i &lt; numCPUs; i++) {
+      cluster.fork();
+    }
+
+    cluster.on('exit', function(worker, code, signal) {
+      console.log('worker ' + worker.pid + ' died');
+    });
+  } else {
+    http.createServer(function(req, res) {
+      res.writeHead(200);
+      res.end("hello world\n");
+    }).listen(8000);
+  }
+  </pre>
+  </div>
+  </section>
+
   <!-- end sides pfleidi session 2 -->
 
   <!-- start slides Anna session 2-->
