@@ -81,7 +81,7 @@
   <li>WebSockets</li>
     <li>Node.js</li>
   </ul>
-  <h3>Second lesson (July, 05th 2012)</h3>
+  <h3>Second lesson (July, 04th 2012)</h3>
   <ul>
     <li>Socket.IO</li>
     <li>redis</li>
@@ -1441,7 +1441,8 @@
 	<ul>
 	  <li>redis = REmote DIctionary Server</li>
 	  <li>a key-value data store</li>
-	  <li>belongs to NoSQL DBs</li>	  
+	  <li>belongs to NoSQL DBs</li>	
+	  <li>latest stable version: 2.4.15</li>
 	</ul>
   </section>
   
@@ -1471,9 +1472,9 @@
 	  <li>faster than e.g. MySQL</li>
 	  <li>about 100.000 wrinting processes per socond</li>
 	  <li>about 80.000 reading processes per second</li>
+	  <li>time complexity is given to every command</li>
 	  <li>redis typically holds the whole dataset in RAM - In-Memory DB (IMDB)</li>
-	  <!-- mangelhaften Persistenz
-	  nur dort eingesetzt werden kann wo keine ACID-konforme Dauerhaftigkeit der Transaktionen gefordert ist. -->
+	  <li>data will be saved on disk in a defined interval</li>
 	</ul>
   </section>
   
@@ -1489,9 +1490,8 @@
   <section class="slide" id="disadvantages">
 	<h2>Disadvantages</h2>	
 	<ul>
-	  <li>persistence: </li>
-	  <li></li>
-	  <li></li>
+	  <li>persistence: changes could get lost</li>
+	  <li>can not be used for complex data structures</li>
 	</ul>
   </section>
   
@@ -1727,18 +1727,18 @@
   <h3>add a given value to the sorted set</h3>
   <div class="sample-content">
   <pre class="prettyprint">
-    ZADD hackers 1940 "Alan Kay"
-    ZADD hackers 1953 "Richard Stallman"
-    ZADD hackers 1965 "Yukihiro Matsumoto"
-    ZADD hackers 1916 "Claude Shannon"
-    ZADD hackers 1969 "Linus Torvalds"
-    ZADD hackers 1912 "Alan Turing"
+    ZADD score 194 "Tim"
+    ZADD score  53 "Ben"
+    ZADD score 200 "Liz"
+    ZADD score   3 "Bob"
+    ZADD score  74 "Sue"
+    ZADD score  20 "Tom"
   </pre>
   </div>
   <h3>return the values of the set</h3>
   <div class="sample-content">
   <pre class="prettyprint">
-    ZRANGE hackers 2 4
+    ZRANGE score 2 4
   </pre>
   </div>
 </section>
